@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"os/user"
@@ -12,8 +11,6 @@ import (
 	"github.com/kgretzky/evilginx2/core"
 	"github.com/kgretzky/evilginx2/database"
 	"github.com/kgretzky/evilginx2/log"
-
-	"github.com/fatih/color"
 )
 
 var phishlets_dir = flag.String("p", "", "Phishlets directory path")
@@ -33,14 +30,6 @@ func joinPath(base_path string, rel_path string) string {
 	return ret
 }
 
-func showAd() {
-	lred := color.New(color.FgHiRed)
-	lyellow := color.New(color.FgHiYellow)
-	white := color.New(color.FgHiWhite)
-	message := fmt.Sprintf("%s: %s %s", lred.Sprint("Evilginx Mastery Course"), lyellow.Sprint("https://academy.breakdev.org/evilginx-mastery"), white.Sprint("(learn how to create phishlets)"))
-	log.Info("%s", message)
-}
-
 func main() {
 	flag.Parse()
 
@@ -53,7 +42,6 @@ func main() {
 	exe_dir := filepath.Dir(exe_path)
 
 	core.Banner()
-	showAd()
 
 	if *phishlets_dir == "" {
 		*phishlets_dir = joinPath(exe_dir, "./phishlets")
